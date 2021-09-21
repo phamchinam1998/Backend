@@ -16,6 +16,7 @@ export default function NewAPICart(CartCTRL) {
     app.post("/deleteall", async (req, res) => {
         const result = await CartCTRL.deleteCart(req.body.id);
         if (result) {
+            res.json("Success");
             res.status(200);
         }
     })
@@ -27,6 +28,7 @@ export default function NewAPICart(CartCTRL) {
         }
         const result = await CartCTRL.deleteCartItem(params);
         if (result) {
+            res.json("Success");
             res.status(200);
         }
     })
@@ -37,6 +39,7 @@ export default function NewAPICart(CartCTRL) {
         }
         const result = await CartCTRL.addCartItem(params);
         if (result) {
+            res.json("Success");
             res.status(200);
         }
     })
