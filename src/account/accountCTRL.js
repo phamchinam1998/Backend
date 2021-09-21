@@ -115,7 +115,7 @@ export default class AccountCTRLBase {
             secure: false,
             auth: {
                 user: "phamchinam1998@gmail.com",
-                pass: "taton1102",
+                pass: "process.env.MAILPW",
             },
         });
         let info = await transporter.sendMail({
