@@ -124,7 +124,7 @@ export default class AccountCTRLBase {
             subject: params.subject,
             text: params.text,
             html: params.html,
-        }).then(res => res);
+        }).then(res => { return res });
         return info;
     }
 
@@ -141,7 +141,6 @@ export default class AccountCTRLBase {
         const user_info = {
             _id: rand.uppercase(12),
             account_id: account_id,
-            // customer_name: params.fullname,
             phone_number: params.phone,
             email: params.email,
             gender: params.gender,
