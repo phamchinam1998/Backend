@@ -1,6 +1,6 @@
 import express from "express";
-import cors from "cors";
 import DotENV from "dotenv/config";
+import cors from "cors";
 const { dotenv } = DotENV;
 import Connect from "./lib/mongodb.js";
 import Authorization from "./src/middleware/authorization.js";
@@ -54,11 +54,16 @@ async function main() {
     const app = express();
     app.use(express.json());
     app.use(cors());
+    app.all('/', function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next()
+    });
     app.disable("x-powered-by");
     app.use('/testserver', (req, res, next) => {
         res.json("Success")
     })
-    app.use('/authorization', Authorization);
+    app.use("/authorization", Authorization);
     app.use("/account", NewAPILogin(AccountCTrL));
     app.use("/products", NewAPIProducts(ProductsCTRL));
     app.use("/authorization/customer", NewAPICustomer(CustomerCTRL));

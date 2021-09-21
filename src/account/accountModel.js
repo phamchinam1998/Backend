@@ -73,12 +73,4 @@ export default class AccountModelBase {
         return doc;
     }
 
-    // async deleteCustomer(params) {
-    //     try {
-    //         await this.col_account.deleteOne({ $or: [{ _id: params.id }, { code: params.code }] });
-    //     }
-    //     catch (err) {
-    //         if (err) throw err;
-    //     }
-    // }
 }
