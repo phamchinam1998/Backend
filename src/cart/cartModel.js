@@ -25,14 +25,35 @@ export default class CartModelBase {
     }
 
     async deleteCartItem(id, item_id) {
-        await this.col_cart.updateOne({ account_id: id }, { $pull: { cart: item_id } });
+        const result = await this.col_cart.updateOne({ account_id: id }, { $pull: { cart: item_id } })
+            .then(res => {
+                return true;
+            })
+            .catch(rej => {
+                return false;
+            })
+        return result;
     }
 
     async deleteAll(id) {
-        await this.col_cart.updateOne({ account_id: id }, { $set: { cart: [] } });
+        const result = await this.col_cart.updateOne({ account_id: id }, { $set: { cart: [] } })
+            .then(res => {
+                return true;
+            })
+            .catch(rej => {
+                return false;
+            })
+        return result;
     }
 
     async addCartItem(id, item_id) {
-        await this.col_cart.updateOne({ account_id: id }, { $addToSet: { cart: item_id } });
+        const result = await this.col_cart.updateOne({ account_id: id }, { $addToSet: { cart: item_id } })
+            .then(res => {
+                return true;
+            })
+            .catch(rej => {
+                return false;
+            })
+        return result;
     }
 }

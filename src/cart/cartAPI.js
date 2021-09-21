@@ -14,7 +14,10 @@ export default function NewAPICart(CartCTRL) {
     });
 
     app.post("/deleteall", async (req, res) => {
-        await CartCTRL.deleteCart(req.body.id);
+        const result = await CartCTRL.deleteCart(req.body.id);
+        if (result) {
+            res.status(200);
+        }
     })
 
     app.post("/deleteitem", async (req, res) => {
@@ -22,14 +25,20 @@ export default function NewAPICart(CartCTRL) {
             id: req.body.id,
             item_id: req.body.item_id,
         }
-        await CartCTRL.deleteCartItem(params);
+        const result = await CartCTRL.deleteCartItem(params);
+        if (result) {
+            res.status(200);
+        }
     })
     app.post("/additem", async (req, res) => {
         const params = {
             id: req.body.id,
             item_id: req.body.item_id,
         }
-        await CartCTRL.addCartItem(params);
+        const result = await CartCTRL.addCartItem(params);
+        if (result) {
+            res.status(200);
+        }
     })
     return app;
 }

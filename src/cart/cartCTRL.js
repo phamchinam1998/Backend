@@ -15,12 +15,15 @@ export default class CartCTRLBase {
     }
 
     async deleteCart(id) {
-        await this.CartModel.deleteAll(id);
+        const result = await this.CartModel.deleteAll(id);
+        return result;
     }
     async deleteCartItem(params) {
-        await this.CartModel.deleteCartItem(params.id, params.item_id);
+        const result = await this.CartModel.deleteCartItem(params.id, params.item_id);
+        return result;
     }
     async addCartItem(params) {
-        await this.CartModel.addCartItem(params.id, params.item_id);
+        const result = await this.CartModel.addCartItem(params.id, params.item_id);
+        return result;
     }
 }
