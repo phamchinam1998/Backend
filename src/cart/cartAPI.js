@@ -22,16 +22,15 @@ export default function NewAPICart(CartCTRL) {
     })
 
     app.post("/deleteitem", async (req, res) => {
-        res.json("success");
-        // const params = {
-        //     id: req.body.id,
-        //     item_id: req.body.item_id,
-        // }
-        // const result = await CartCTRL.deleteCartItem(params);
-        // if (result) {
-        //     res.json("Success");
-        //     res.status(200);
-        // }
+        const params = {
+            id: req.body.id,
+            item_id: req.body.item_id,
+        }
+        const result = await CartCTRL.deleteCartItem(params);
+        if (result) {
+            res.json("Success");
+            res.status(200);
+        }
     })
     app.post("/additem", async (req, res) => {
         const params = {
