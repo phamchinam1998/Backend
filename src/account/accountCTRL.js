@@ -45,19 +45,15 @@ export default class AccountCTRLBase {
                 html: `<h1>Mail thiết lập lại mật khẩu</h1><h4>Mật khẩu mới của bạn là :</h4>
                 <h5>${newpw}</h5>`,
             }
-            // const result = await this.SendMail(formMail);
-            return {
-                user: process.env.MAIL,
-                pass: process.env.MAILPW,
-            };
-            // if (result.response) {
-            //     const changepw = await this.AccountModel.updateCustomer({
-            //         id: customer.id,
-            //         query: { password: newpw },
-            //     })
-            //     return changepw;
-            // }
-            // else return false;
+            const result = await this.SendMail(formMail);
+            if (result.response) {
+                const changepw = await this.AccountModel.updateCustomer({
+                    id: customer.id,
+                    query: { password: newpw },
+                })
+                return changepw;
+            }
+            else return false;
         }
     }
 
@@ -115,8 +111,8 @@ export default class AccountCTRLBase {
     async SendMail(params) {
         let transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
+            port: 587,
+            secure: false,
             auth: {
                 user: process.env.MAIL,
                 pass: process.env.MAILPW,
