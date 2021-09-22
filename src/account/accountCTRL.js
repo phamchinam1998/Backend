@@ -114,12 +114,12 @@ export default class AccountCTRLBase {
             port: 465,
             secure: true,
             auth: {
-                user: "phamchinam1998@gmail.com",
+                user: process.env.MAIL,
                 pass: process.env.MAILPW,
             },
         });
         let info = await transporter.sendMail({
-            from: "phamchinam1998@gmail.com",
+            from: process.env.MAIL,
             to: params.email,
             subject: params.subject,
             text: params.text,
