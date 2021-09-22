@@ -54,17 +54,20 @@ async function main() {
     const app = express();
     app.use(express.json());
     app.use(cors());
+    const corsconfig = {
+        optionsSuccessStatus: 200,
+    }
     app.disable("x-powered-by");
     app.use('/testserver', (req, res, next) => {
         res.json("Success")
     })
-    app.use("/authorization", cors(), Authorization);
-    app.use("/account", cors(), NewAPILogin(AccountCTrL));
-    app.use("/products", cors(), NewAPIProducts(ProductsCTRL));
-    app.use("/authorization/customer", cors(), NewAPICustomer(CustomerCTRL));
-    app.use("/authorization/products", cors(), NewAPISellerProducts(SellerProductsCTRL));
-    app.use("/authorization/cart", cors(), NewAPICart(CartCTRL));
-    app.use("/authorization/seller", cors(), NewAPISeller(SellerCTRL))
+    app.use("/authorization", Authorization);
+    app.use("/account", NewAPILogin(AccountCTrL));
+    app.use("/products", NewAPIProducts(ProductsCTRL));
+    app.use("/authorization/customer", NewAPICustomer(CustomerCTRL));
+    app.use("/authorization/products", NewAPISellerProducts(SellerProductsCTRL));
+    app.use("/authorization/cart", NewAPICart(CartCTRL));
+    app.use("/authorization/seller", NewAPISeller(SellerCTRL))
     /****************************************************************************/
     //server listen
     console.log(`${new Date().toLocaleString()} - Server listen on ${process.env.PORT}`);
