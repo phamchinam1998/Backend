@@ -38,7 +38,7 @@ export default function NewAPILogin(AccountCTRL) {
     })
 
     app.post("/register", async (req, res) => {
-        res.json(req);
+        res.json("success");
         // const data = req.body;
         // const result = await AccountCTRL.createAccount(data);
         // if (result === "success") {
