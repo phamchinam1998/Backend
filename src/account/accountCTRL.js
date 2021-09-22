@@ -45,15 +45,16 @@ export default class AccountCTRLBase {
                 html: `<h1>Mail thiết lập lại mật khẩu</h1><h4>Mật khẩu mới của bạn là :</h4>
                 <h5>${newpw}</h5>`,
             }
-            const result = await this.SendMail(formMail);
-            if (result.response) {
-                const changepw = await this.AccountModel.updateCustomer({
-                    id: customer.id,
-                    query: { password: newpw },
-                })
-                return changepw;
-            }
-            else return false;
+            return true;
+            // const result = await this.SendMail(formMail);
+            // if (result.response) {
+            //     const changepw = await this.AccountModel.updateCustomer({
+            //         id: customer.id,
+            //         query: { password: newpw },
+            //     })
+            //     return changepw;
+            // }
+            // else return false;
         }
     }
 
