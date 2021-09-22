@@ -56,13 +56,11 @@ async function main() {
     const corsconfig = {
         optionsSuccessStatus: 200,
     }
+    app.use(cors(corsconfig));
     app.disable("x-powered-by");
     app.use('/testserver', (req, res, next) => {
         res.json("Success")
     })
-    app.options('/authorization', cors(corsconfig));
-    app.options('/account', cors(corsconfig));
-    app.options('/products', cors(corsconfig));
     app.use("/authorization", Authorization);
     app.use("/account", NewAPILogin(AccountCTrL));
     app.use("/products", NewAPIProducts(ProductsCTRL));
