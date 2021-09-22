@@ -53,10 +53,10 @@ async function main() {
     //************************************************************************************ */
     const app = express();
     app.use(express.json());
-    app.use(cors());
     const corsconfig = {
         optionsSuccessStatus: 200,
     }
+    app.use(cors(corsconfig));
     app.disable("x-powered-by");
     app.use('/testserver', (req, res, next) => {
         res.json("Success")
