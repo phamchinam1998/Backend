@@ -38,14 +38,15 @@ export default function NewAPILogin(AccountCTRL) {
     })
 
     app.post("/register", async (req, res) => {
-        const data = req.body;
-        const result = await AccountCTRL.createAccount(data);
-        if (result === "success") {
-            res.json(result);
-        }
-        if (result === "failed") {
-            res.status(500);
-        }
+        res.json(req);
+        // const data = req.body;
+        // const result = await AccountCTRL.createAccount(data);
+        // if (result === "success") {
+        //     res.json(result);
+        // }
+        // if (result === "failed") {
+        //     res.status(500);
+        // }
     })
 
     return app;
