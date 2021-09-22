@@ -128,7 +128,6 @@ export default class AccountCTRLBase {
         return info;
     }
 
-
     async createAccount(params) {
         const account_id = rand.alphabet(12);
         const account = {
@@ -145,29 +144,73 @@ export default class AccountCTRLBase {
             email: params.email,
             gender: params.gender,
         }
-        const mail = await this.SendMail({
-            account_id: account_id,
-            email: params.email,
-            subject: "Mail xác nhận đăng ký",
-            html: `<h1>Mail xác thực đăng ký</h1><h4>Để hoàn tất xác thực vui lòng ấn vào link :</h4><a href="https://demo-ecomerce-react.herokuapp.com/account/verify/${account_id}">Link</a>`,
-        });
-        if (mail.response) {
-            await this.AccountModel.createAccount(account);
-            switch (params.type) {
-                case "customer":
-                    user_info.customer_name = params.fullname;
-                    const customer = await this.CustomerModel.createCustomer(user_info);
-                    const cart = await this.CartModel.createCart(account_id)
-                    break;
-                case "seller":
-                    user_info.seller_name = params.fullname;
-                    const seller = await this.SellerModel.createSeller(user_info);
-                    break;
-                default:
-                    break;
-            }
-            return "success";
-        }
-        else return "failed";
+        return "success";
+        // const mail = await this.SendMail({
+        //     account_id: account_id,
+        //     email: params.email,
+        //     subject: "Mail xác nhận đăng ký",
+        //     html: `<h1>Mail xác thực đăng ký</h1><h4>Để hoàn tất xác thực vui lòng ấn vào link :</h4><a href="https://demo-ecomerce-react.herokuapp.com/account/verify/${account_id}">Link</a>`,
+        // });
+        // if (mail.response)
+        // if (mail.response) {
+        //     await this.AccountModel.createAccount(account);
+        //     switch (params.type) {
+        //         case "customer":
+        //             user_info.customer_name = params.fullname;
+        //             const customer = await this.CustomerModel.createCustomer(user_info);
+        //             const cart = await this.CartModel.createCart(account_id)
+        //             break;
+        //         case "seller":
+        //             user_info.seller_name = params.fullname;
+        //             const seller = await this.SellerModel.createSeller(user_info);
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        //     return "success";
+        // }
+        // else return "failed";
     }
+
+    // async createAccount(params) {
+    //     const account_id = rand.alphabet(12);
+    //     const account = {
+    //         _id: account_id,
+    //         user_name: params.username,
+    //         password: params.password,
+    //         type: params.type,
+    //         status: "verify",
+    //     }
+    //     const user_info = {
+    //         _id: rand.uppercase(12),
+    //         account_id: account_id,
+    //         phone_number: params.phone,
+    //         email: params.email,
+    //         gender: params.gender,
+    //     }
+    //     const mail = await this.SendMail({
+    //         account_id: account_id,
+    //         email: params.email,
+    //         subject: "Mail xác nhận đăng ký",
+    //         html: `<h1>Mail xác thực đăng ký</h1><h4>Để hoàn tất xác thực vui lòng ấn vào link :</h4><a href="https://demo-ecomerce-react.herokuapp.com/account/verify/${account_id}">Link</a>`,
+    //     });
+    //     if (mail.response) {
+    //         await this.AccountModel.createAccount(account);
+    //         switch (params.type) {
+    //             case "customer":
+    //                 user_info.customer_name = params.fullname;
+    //                 const customer = await this.CustomerModel.createCustomer(user_info);
+    //                 const cart = await this.CartModel.createCart(account_id)
+    //                 break;
+    //             case "seller":
+    //                 user_info.seller_name = params.fullname;
+    //                 const seller = await this.SellerModel.createSeller(user_info);
+    //                 break;
+    //             default:
+    //                 break;
+    //         }
+    //         return "success";
+    //     }
+    //     else return "failed";
+    // }
 }
