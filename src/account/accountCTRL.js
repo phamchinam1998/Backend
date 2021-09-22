@@ -149,7 +149,7 @@ export default class AccountCTRLBase {
             account_id: account_id,
             email: params.email,
             subject: "Mail xác nhận đăng ký",
-            html: `<h1>Mail xác thực đăng ký</h1><h4>Để hoàn tất xác thực vui lòng ấn vào link :</h4><a href="http://localhost:3000/account/verify/${account_id}">Link</a>`,
+            html: `<h1>Mail xác thực đăng ký</h1><h4>Để hoàn tất xác thực vui lòng ấn vào link :</h4><a href="https://demo-ecomerce-react.herokuapp.com/account/verify/${account_id}">Link</a>`,
         });
         if (mail.response) {
             await this.AccountModel.createAccount(account);

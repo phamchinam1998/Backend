@@ -27,12 +27,10 @@ export default function NewAPICart(CartCTRL) {
             item_id: req.body.item_id,
         }
         const result = await CartCTRL.deleteCartItem(params);
-        res.json("Success")
-        res.status(200);
-        // if (result) {
-        //     res.json("Success");
-        //     res.status(200);
-        // }
+        if (result) {
+            res.json("Success");
+            res.status(200);
+        }
     })
     app.post("/additem", async (req, res) => {
         const params = {
