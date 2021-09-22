@@ -60,7 +60,9 @@ async function main() {
     app.use('/testserver', (req, res, next) => {
         res.json("Success")
     })
-    app.options('/authorization/cart', cors(corsconfig));
+    app.options('/authorization', cors(corsconfig));
+    app.options('/account', cors(corsconfig));
+    app.options('/products', cors(corsconfig));
     app.use("/authorization", Authorization);
     app.use("/account", NewAPILogin(AccountCTrL));
     app.use("/products", NewAPIProducts(ProductsCTRL));
