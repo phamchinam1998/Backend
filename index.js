@@ -54,6 +54,7 @@ async function main() {
     const app = express();
     app.use(express.json());
     const corsconfig = {
+        origin: "https://demo-ecomerce-react.herokuapp.com",
         optionsSuccessStatus: 200,
     }
     app.use(cors(corsconfig));
